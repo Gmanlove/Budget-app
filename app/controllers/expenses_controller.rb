@@ -1,17 +1,28 @@
 class ExpensesController < ApplicationController
-    before_action :authenticate_user!
+    def index
+      @expenses = current_user.expenses.all
+    end
   
     def new
-      @expense = current_user.expenses.build
+      @expense = Expense.new
+      @categories = current_user.categories.all
+      @default_category = params[:category_id]
     end
   
     def create
-      @expense = current_user.expenses.build(expense_params)
-      if @expense.save
-        flash[:notice] = 'Expense created successfully.'
-        redirect_to expenses_path
+      expense = current_user.expenses.new(expense_params)
+      if expense.save
+        selected_category_ids = params[:expense][:selected_categories].reject(&:empty?)
+        selected_category_ids << params[:category_id]
+  
+        selected_category_ids.uniq.each do |category_id|
+          category = current_user.categories.find(category_id)
+          ExpenseCategory.create(expense:, category:)
+        end
+        redirect_to category_expenses_path, notice: 'Expense created successfully'
       else
-        render 'new'
+        flash.now[:alert] = 'Unable to create an expense'
+        render :new
       end
     end
   
