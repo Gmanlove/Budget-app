@@ -1,20 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
+  include Devise::Test::IntegrationHelpers
+
+  before :each do
+    @user = User.create(name: 'Emma', email: 'emmagmanc@gmail.com', password: '123456', confirmed_at: Time.now)
+    sign_in @user
+    @category = Category.create(author: @user, name: 'category1', icon: 'https://i.ibb.co/gm68B4C/Mc-Donalds.png')
+  end
+
   describe 'Validations' do
-    let(:user) { User.create(name: 'Emma') }
-    let(:category) do
-      Category.new(author: user, name: 'category1', icon: 'https://i.ibb.co/gm68B4C/Mc-Donalds.png')
+    it 'name should be present' do
+      @category.name = ''
+      expect(@category).to_not be_valid
     end
 
-    it 'validates presence of name' do
-      category.name = ''
-      expect(category).not_to be_valid
-    end
-
-    it 'validates presence of icon' do
-      category.icon = ''
-      expect(category).not_to be_valid
+    it 'Icon should be present' do
+      @category.icon = ''
+      expect(@category).to_not be_valid
     end
   end
 end
