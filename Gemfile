@@ -5,6 +5,10 @@ ruby '3.1.2'
 gem 'pg'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'devise'
+gem 'font-awesome-sass'
+gem 'simple_form'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
