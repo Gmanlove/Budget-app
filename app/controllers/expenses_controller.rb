@@ -1,35 +1,47 @@
 class ExpensesController < ApplicationController
-    def index
-      @expenses = current_user.expenses.all
-    end
-  
-    def new
-      @expense = Expense.new
-      @categories = current_user.categories.all
-      @default_category = params[:category_id]
-    end
-  
-    def create
-      expense = current_user.expenses.new(expense_params)
-      if expense.save
-        selected_category_ids = params[:expense][:selected_categories].reject(&:empty?)
-        selected_category_ids << params[:category_id]
-  
-        selected_category_ids.uniq.each do |category_id|
-          category = current_user.categories.find(category_id)
-          ExpenseCategory.create(expense:, category:)
+  def index
+    @user = current_user
+    @group = Group.find(params[:group_id])
+    @expenses = @group.expenses.order(created_at: :desc)
+    @expenses_sum = @expenses.sum(:amount) || 0
+  end
+
+  def new
+    @user = current_user
+    @group = Group.find(params[:group_id])
+    @categories = @user.groups
+    @expense = Expense.new
+  end
+
+  def create
+    @user = current_user
+    @group = Group.find(params[:group_id])
+    category_ids = params[:expense][:category_ids]
+
+    if category_ids.present?
+
+      @expense = Expense.new(expense_params.except(:category_ids))
+      @expense.author = @user
+      if @expense.save
+        category_ids.each do |category_id|
+          ExpenseGroup.create(group_id: category_id.to_i, expense_id: @expense.id)
         end
-        redirect_to category_expenses_path, notice: 'Expense created successfully'
+        redirect_to group_expenses_path(@group)
+
       else
-        flash.now[:alert] = 'Unable to create an expense'
-        render :new
+        redirect_to new_group_expense_path(@group, notice: 'Failed to create expense')
+
       end
-    end
-  
-    private
-  
-    def expense_params
-      params.require(:expense).permit(:name, :amount)
+    else
+
+      redirect_to new_group_expense_path(@group, notice: 'Please select at least one category')
+
     end
   end
-  
+
+  private
+
+  def expense_params
+    params.require(:expense).permit(:name, :amount, category_ids: [])
+  end
+end

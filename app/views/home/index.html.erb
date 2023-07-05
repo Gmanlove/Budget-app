@@ -1,0 +1,8 @@
+<div class="front-page">
+  <h1 class="title">Budget Your Expenses</h1>
+  <%= image_tag("budget.jpeg", alt: "Image description", class: "homepage-image") %>
+  <div class="log-button">
+    <%= button_to "LOG IN", new_user_session_path, method: :get, class: 'btn btn-success link_button' %>
+    <%= button_to "SIGN UP", new_user_registration_path, method: :get, class: 'btn btn-light link_button' %>
+  </div>
+</div>

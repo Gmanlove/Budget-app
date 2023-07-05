@@ -1,12 +1,14 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
+  
+  resources :home, only: :index
+  resources :groups, only: [:index, :new, :create],path: 'categories' do
+    resources :expenses, only: [:index, :new, :create] 
+  end
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+ 
+  # Add the following route for signing out
+  resources :users, only: [:show]
 
   # Defines the root path route ("/")
-  root "categories#index"
-  resources :categories, only: [:index, :new, :create] do
-    resources :expenses, only: [:index, :new, :create]
-  end
+   root "home#index"
 end

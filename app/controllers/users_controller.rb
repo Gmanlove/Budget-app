@@ -1,28 +1,12 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!
-  
-    def show
-      @user = current_user
-    end
-  
-    def edit
-      @user = current_user
-    end
-  
-    def update
-      @user = current_user
-      if @user.update(user_params)
-        flash[:notice] = 'User profile updated successfully.'
-        redirect_to user_path(@user)
-      else
-        render 'edit'
-      end
-    end
-  
-    private
-  
-    def user_params
-      params.require(:user).permit(:name, :email)
+  def index; end
+
+  def show
+    if params[:id] == 'sign_out'
+      sign_out(current_user)
+      redirect_to root_path, notice: 'You have been signed out successfully.'
+    else
+      redirect_to root_path
     end
   end
-  
+end

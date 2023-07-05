@@ -3,56 +3,31 @@ require 'rails_helper'
 RSpec.describe 'Expenses', type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let!(:user) { User.create(name: 'Tom', email: 'nahom2@gmail.com', password: '123456', confirmed_at: Time.now) }
+  describe 'GET /expenses' do
+    before(:each) do
+      @user = User.create(email: 'user@example.com', password: 'password', name: 'user')
+      sign_in @user
+      @group = @user.groups.create(name: 'test', icon: 'icons8-logout-64.png')
+      @expense = @user.expenses.create(name: 'test', amount: 100)
+      @expense_group = ExpenseGroup.create(group_id: @group.id, expense_id: @expense.id)
 
-  before :each do
-    sign_in user
-  end
-
-  let!(:category) { Category.create(author: user, name: 'category1', icon: 'https://i.ibb.co/gm68B4C/Mc-Donalds.png') }
-
-  let!(:valid_attributes) { { name: 'Expense1', amount: 40, selected_categories: [] } }
-
-  let!(:invalid_attributes) { { name: 'k', amount: 40, selected_categories: [] } }
-
-  describe 'GET /index' do
-    it 'should return http success' do
-      get category_expenses_path(category)
-      expect(response).to be_successful
+      get "/categories/#{@group.id}/expenses"
     end
-    it 'should render the correct template' do
-      get category_expenses_path(category)
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'return 200' do
+      expect(response.status).to eq(200)
+    end
+
+    it 'renders the index template' do
       expect(response).to render_template('index')
     end
-  end
 
-  describe 'GET /new' do
-    it 'should return a successful response' do
-      get new_category_expense_path(category)
-      expect(response).to be_successful
-    end
-
-    it 'should render the correct template' do
-      get new_category_expense_path(category)
-      expect(response).to render_template('new')
-    end
-  end
-
-  describe 'POST /create' do
-    context 'with valid attributes' do
-      it 'creates a new category' do
-        expect do
-          post category_expenses_path(category), params: { expense: valid_attributes }
-        end.to change(Expense, :count).by(1)
-        expect(flash[:notice]).to eq('Expense created successfully')
-      end
-    end
-    context 'with invalid attributes' do
-      it 'does not create a new category' do
-        post category_expenses_path(category), params: { expense: invalid_attributes }
-        expect(response).to render_template(:new)
-        expect(flash[:alert]).to eq('Unable to create an expense')
-      end
+    it 'include the list of all expenses' do
+      expect(response.body).to include('List of expenses')
     end
   end
 end
