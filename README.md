@@ -55,12 +55,10 @@
 # Live Preview
 > You can preview the project by visiting the link below
 
-[Link Preview]()
 # Description
 
 > You can watch a demo of the video description below.
 
-[Link to Loom.]()
 
 ### Key Features <a name="key-features"></a>
 
