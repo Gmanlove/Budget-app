@@ -10,9 +10,9 @@ services:
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
-      - key: DATABASE_URL
+      - key: postgres://emma_s_user:eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO@dpg-ciiqe9lgkuvojjcrqqug-a.oregon-postgres.render.com/emma_s
         fromDatabase:
           name: emma_s
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: bc5f4695b80732cb07d4ec9932fd181b
         sync: false
