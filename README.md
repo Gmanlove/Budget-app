@@ -33,7 +33,7 @@
 
 # 📖 Budget App <a name="about-project"></a>
 
-> The **Budget App** is a classic example of a budget website, that helps you keep track of your expenses.It provides a user-friendly interface that allows individuals to record their expenses in different categories and track them over time. The app is built using Ruby on Rails
+> The **Budget App** is a classic example of a budget website, that helps you keep track of your expenses.It provides a user-friendly interface that allows individuals to record their expenses in different categories and track them over time. The app is built using Ruby on Rails and postgrel database
 
 ## 🛠 Built With <a name="built-with"></a>
 
