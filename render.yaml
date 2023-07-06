@@ -10,7 +10,7 @@ services:
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
-      - key: postgres://emma_s_user:eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO@dpg-ciiqe9lgkuvojjcrqqug-a.oregon-postgres.render.com/emma_s
+      - key: Jl3QYYiUY9v5I19/Oypb9bVmZsGMnK7VEGZqBIKTnd6+at5zoOeNCJA+PRmdQP3bCgUnGkNPaXh3dF3qp0QMX5a9SjSrUGOH+oBpPzgtuvb5o5/PXscLaYdBO4WCSe+cb99KHSIVMNdVllKxJ7tOpPWALvQmIK1iA5dvQnF/I0ANM+XJ7QVF7gzpwuP9xgfqnUS2eaS2lWVYSefLFH9cDnLfTM2CcfIjoOBQ936LdIilKD2snFg6Vpp6PLbi6QBVhTxe7J+ZeEqFq1bnZSucUzUQON6Pj+lhQCy2VnMsAoNOJX2tlMNsyWlbIMrQjKf+UkNQLk9tg7Bgoy+3IwyJ90O8eDQz3KbnDy+tp+Cp0WJoybuV8nYi/hpVN9QfoE5Qto8bZffidb6BIKH8BHdt5x/+os3f0qXPK4WX--LZXhGF2lj2C/veqA--CiwsTB5UN5byNss2ukpEew==
         fromDatabase:
           name: emma_s
           property: connectionString
