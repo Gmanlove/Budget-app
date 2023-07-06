@@ -14,5 +14,5 @@ services:
         fromDatabase:
           name: emma-s
           property: connectionString
-      - key: bc5f4695b80732cb07d4ec9932fd181b
+      - key: RAILS_MASTER_KEY
         sync: false

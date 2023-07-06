@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  url: postgres://emma_s_user:eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO@dpg-ciiqe9lgkuvojjcrqqug-a.oregon-postgres.render.com/emma_s
+  url: postgres://emma_s_user:eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO@dpg-ciiqe9lgkuvojjcrqqug-a/emma_s
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   port: 5432
   username: emma_s_user
