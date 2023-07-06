@@ -16,7 +16,7 @@ default: &default
 
 development:
   <<: *default
-  database: Budget-app_development
+  database: emma_s
 
 test:
   <<: *default
@@ -24,4 +24,4 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: emma_s
