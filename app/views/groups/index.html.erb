@@ -8,9 +8,9 @@
       <%= link_to group_expenses_path(group),class:'category-card' do %>
        
           <div class='icon-container'>
-            # <% if group.icon.present? %>
-            #   <%= image_tag group.icon %>
-            # <% end %>
+             <% if group.icon.present? %>
+             <%= image_tag group.icon %>
+             <% end %>
           </div>
           <div class='group-information'>
             <p><%= group.name %></p>
