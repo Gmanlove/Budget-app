@@ -55,9 +55,13 @@
 # Live Preview
 > You can preview the project by visiting the link below
 
+[Link Preview](https://budget-expens1.onrender.com)
 # Description
 
 > You can watch a demo of the video description below.
+
+[Link to Loom.](https://www.loom.com/share/b855790bc90b4b25b2e93cdfd958bb05)
+
 
 
 ### Key Features <a name="key-features"></a>
@@ -136,7 +140,7 @@ Run tests with:
 👤 **Emmanuel Obi**
 
 - GitHub: [@Gmanlove](https://github.com/Gmanlove)
-- LinkedIn: [@Gmanlove](https://www.linkedin.com/in/Gmanlove/)
+- LinkedIn: [@Emmanuel](https://www.linkedin.com/in/emmanuelgozieobi/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
