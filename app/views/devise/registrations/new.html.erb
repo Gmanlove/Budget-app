@@ -1,0 +1,36 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="head-bar">
+    <%= link_to root_path do %>
+      <%= image_tag('arrow.png', class: 'icon') %>
+    <% end %>
+    <h2 class="head-reg">REGISTER</h2>
+    <div class="do-in">
+      <%= f.submit "LOG IN", class: 'login' %>
+    </div>
+  </div>
+  <%= render partial: 'shared/notice' %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-container">
+    <div class="input-container">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Name", class: 'form-control' %>
+    </div>
+
+    <div class="input-container">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder: "Email", class: 'form-control' %>
+    </div>
+
+    <div class="input-container">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password (6 characters minimum)', class: 'form-control' %>
+    </div>
+
+    <div class="input-container">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password confirmation', class: 'form-control' %>
+    </div>
+
+    <div class="do-in">
+      <%= f.submit "SIGN UP", class: 'login' %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,25 +1,20 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: postgres://emma_s_user:eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO@dpg-ciiqe9lgkuvojjcrqqug-a/emma_s
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: gman1
- 
+  port: 5432
+  username: emma_s_user
+  password: eSF2XIBn8pAhQbpm9SrRVSvIxyOmrtmO
 
 development:
   <<: *default
-  database: Budget-app_development
+  database: emma_s
 
 test:
   <<: *default
-  database: Budget-app_test
+  database: emma_s
 
 production:
   <<: *default
-  database: Budget-app_production
+  url: <%= ENV['DATABASE_URL'] %>
